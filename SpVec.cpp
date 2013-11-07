@@ -25,21 +25,26 @@
 	}
 	T& SpVec::operator-= (const SpVec& sv)
 	{
+		assert(sv.size() == size());
 	}
 	T& SpVec::operator*= (const SpVec& sv)
 	{
+		assert(sv.size() == size());
 	}
 	T& SpVec::operator= (const SpVec& sv)
 	{
 	}
 	T& SpVec::operator+ (const SpVec& sv)
 	{
+		assert(sv.size() == size());
 	}
 	T& SpVec::operator- (const SpVec& sv)
 	{
+		assert(sv.size() == size());
 	}
 	T& SpVec::operator* (const SpVec& sv)
 	{
+		assert(sv.size() == size());
 	}
 	T& SpVec::operator[] (int id)
 	{
