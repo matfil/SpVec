@@ -62,14 +62,14 @@ public:
 /***IMPLEMENTACJA***BiRing<T>::iterator***/
 
 template<typename T>
-BiRing<T>::iterator& BiRing<T>::iterator::operator++()
+typename BiRing<T>::iterator& BiRing<T>::iterator::operator++()
 			{
 				this->ptr = this->ptr->next;
 				return *this;
 			}
 
 template<class T>
-BiRing<T>::iterator& BiRing<T>::iterator::operator--()
+typename BiRing<T>::iterator& BiRing<T>::iterator::operator--()
 			{
 				this->ptr = this->ptr->prev;
 				return *this;
