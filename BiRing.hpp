@@ -8,7 +8,8 @@
 #ifndef BIRING_HPP_
 #define BIRING_HPP_
 
-template <class T> class BiRing
+template <typename T> 
+class BiRing
 {
 private:
 	struct Node
@@ -57,14 +58,16 @@ public:
 	iterator end();
 
 };
+
 /***IMPLEMENTACJA***BiRing<T>::iterator***/
 
-template<class T>
+template<typename T>
 BiRing<T>::iterator& BiRing<T>::iterator::operator++()
 			{
 				this->ptr = this->ptr->next;
 				return *this;
 			}
+
 template<class T>
 BiRing<T>::iterator& BiRing<T>::iterator::operator--()
 			{
@@ -78,18 +81,26 @@ T& BiRing<T>::iterator::operator*()
 			}
 template<class T>
 bool BiRing<T>::iterator::operator!=(iterator it)
-				{return it.ptr != ptr;}
+				{
+          return it.ptr != ptr;
+        }
 template<class T>
 bool BiRing<T>::iterator::operator==(iterator it)
-				{return it.ptr == ptr;}
+				{
+          return it.ptr == ptr;
+        }
 template<class T>
-BiRing<T>::Node* BiRing<T>::iterator::operator->()
-				{return ptr;}
+typename BiRing<T>::Node* BiRing<T>::iterator::operator->()
+				{
+          return ptr;
+        }
 template<class T>
 bool BiRing<T>::iterator::operator==(Node *wsk)
-				{return ptr == wsk;}
+				{
+          return ptr == wsk;
+        }
 template<class T>
-BiRing<T>::iterator BiRing<T>::iterator::operator=(Node *wsk)
+typename BiRing<T>::iterator BiRing<T>::iterator::operator=(Node *wsk)
 			{
 				ptr = wsk;
 				return *this;
@@ -109,7 +120,7 @@ int BiRing<T>::Size()
 }
 
 template<class T>
-inline BiRing<T>::iterator BiRing<T>::remove(iterator to_remove)
+typename BiRing<T>::iterator BiRing<T>::remove(iterator to_remove)
 {
 	if (to_remove == nullptr || to_remove == &head)
 		{
@@ -137,28 +148,28 @@ void BiRing<T>::clear()
 }
 
 template<class T>
-BiRing<T>::iterator BiRing<T>::insert(T value,BiRing<T>::iterator where)
+typename BiRing<T>::iterator BiRing<T>::insert(T value,BiRing<T>::iterator where)
 {
 	++nElem;
 		return iterator(where.ptr->next = where.ptr->next->prev = new Node(value, where.ptr->next, where.ptr));
 }
 
 template<class T>
-BiRing<T>::iterator BiRing<T>::push_back(T value)
+typename BiRing<T>::iterator BiRing<T>::push_back(T value)
 {
-	head.prev = head.prev->next = new BiRing<class T>::Node(value, &head, head.prev);
+	head.prev = head.prev->next = new BiRing<T>::Node(value, &head, head.prev);
 	++nElem;
 	return --end();
 }
 
 template<class T>
-BiRing<T>::iterator BiRing<T>::begin()
+typename BiRing<T>::iterator BiRing<T>::begin()
 {
 	return iterator(head.next);
 }
 
 template<class T>
-BiRing<T>::iterator BiRing<T>::end()
+typename BiRing<T>::iterator BiRing<T>::end()
 {
 	return iterator(&head);
 }

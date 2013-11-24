@@ -10,15 +10,6 @@
 #include <exception>      // std::exception
 
 
-/*int main () {
-  try {
-      ooops o("KUPA");
-      throw o;
-  } catch (std::exception& ex) {
-      std::cout << ex.what();
-  }
-  return 0;
-}*/
 
 
 template <typename T>
