@@ -98,8 +98,12 @@ public:
 		++nElem;
 	}
 	iterator begin()
-		{return iterator(head.next);}
+		{
+      return iterator(head.next);
+    }
 	iterator end()
-		{return iterator(&head);}
+		{
+      return iterator(&head);
+    }
 
 };
