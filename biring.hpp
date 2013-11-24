@@ -50,8 +50,8 @@ public:
 	void clear();
 
 
-	iterator insert(T value, iterator where);
-	iterator push_back(T value);
+	iterator insert(T value, iterator where); // Umieszcza element za wskazywanym przez iterator
+	iterator push_back(T value); // Umieszcza element na końcu
 
 	iterator begin();
 	iterator end();
@@ -136,6 +136,7 @@ void BiRing<T>::clear()
 	head.next = head.prev = &head;
 }
 
+/* Umieszcza element za wskazywanym przez iterator */
 template<class T>
 BiRing<T>::iterator BiRing<T>::insert(T value,BiRing<T>::iterator where)
 {
