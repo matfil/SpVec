@@ -124,7 +124,7 @@ typename BiRing<T>::iterator BiRing<T>::remove(iterator to_remove)
 {
 	if (to_remove == nullptr || to_remove == &head)
 		{
-			throw("invalid pointer in remove function");
+			throw("invalid pointer in remove function"); // nie podoba mi sie;
 		}
 	to_remove -> prev -> next = to_remove -> next;
 	to_remove -> next -> prev = to_remove -> prev;
@@ -138,11 +138,13 @@ typename BiRing<T>::iterator BiRing<T>::remove(iterator to_remove)
 template<class T>
 void BiRing<T>::clear()
 {
-	Node *to_rm = head.next->next;
+	Node *to_rm = head.next, *N;
 	while(nElem != 0)
 	{
-		delete to_rm->prev;;
+    N = to_rm->next;
+		delete to_rm;
 		--nElem;
+    to_rm = N;
 	}
 	head.next = head.prev = &head;
 }
@@ -159,7 +161,7 @@ typename BiRing<T>::iterator BiRing<T>::push_back(T value)
 {
 	head.prev = head.prev->next = new BiRing<T>::Node(value, &head, head.prev);
 	++nElem;
-	return --end();
+	return iterator(head.prev);
 }
 
 template<class T>
