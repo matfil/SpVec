@@ -10,8 +10,6 @@
 #include <exception>      // std::exception
 
 
-
-
 template <typename T>
 class SpVec
 {
@@ -37,7 +35,7 @@ private:
    * Problem moze wystapic przy wielowatkowosci.*/
 
 public:
-	SpVec(int S=0) : len(S) { vals = BiRing<SpVec<T>::Pair>(Pair(-1)); }
+	SpVec(int S=0) : len(S), vals(BiRing<SpVec<T>::Pair>(Pair(-1))) { }
   ~SpVec()
 	{
 		vals.clear();

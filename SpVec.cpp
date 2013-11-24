@@ -1,5 +1,7 @@
 #include "SpVec.hpp"
-#include <cassert>
+//#include <cassert>
+#define OPTI false  
+
 template <typename T>
 void SpVec<T>::resize (int s)
 {
@@ -309,13 +311,32 @@ typename SpVec<T>::nziter SpVec<T>::end()
 template<typename T>
 typename SpVec<T>::nziter& SpVec<T>::nziter::operator++()
 {
+
   ++ptr;
+#if OPTI == true
+  if (ptr->id != -1)
+  {
+    if(ptr->val == 0)
+      ptr = BiRing<T>::remove(BiRing<T>::iterator(ptr));
+  }
+#endif
   return *this;
 }
 template<typename T>
 typename SpVec<T>::nziter& SpVec<T>::nziter::operator--()
 {
   --ptr;
+#if OPTI == true
+  if (ptr->id != -1)
+  {
+    while(ptr->val == 0)
+    {
+      ptr = BiRing<T>::remove(BiRing<T>::iterator(ptr));
+      --ptr;
+    }
+
+  }
+#endif
   return *this;
 }
 
@@ -341,6 +362,13 @@ template<typename T>
 typename SpVec<T>::nziter& SpVec<T>::nziter::operator=(typename BiRing<SpVec<T>::Pair>::iterator P)
 {
   ptr=P;
+#if OPTI == true
+  if (ptr->id != -1)
+  {
+    while(ptr->val == 0)
+      ptr = BiRing<T>::remove(BiRing<T>::iterator(ptr));
+  }
+#endif
   return *this;
 }
 
@@ -351,9 +379,3 @@ typename BiRing<typename SpVec<T>::Pair>::iterator operator->()
   return ptr;
 }*/
 
-int main()
-{
-  SpVec<int>::nziter Q;
-  SpVec<int> A;
-  return 0;
-}

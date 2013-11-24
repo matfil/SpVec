@@ -5,10 +5,12 @@ WARNINGS = -Wall -W -Wextra -Wshadow
 #DEBUG = -g
 OTHERS = -O2 -std=c++11
 
+LINKER = -lboost_unit_test_framework
+
 # katalog do ktorego beda umieszczane pliki obiektowe
 ODIR = .obj
 
-TARGET = SpVec
+TARGET = Test
 
 CXX = g++
 
@@ -25,7 +27,7 @@ all: $(TARGET)
 	@
 
 $(TARGET): $(ODIR) $(OBJS) clean
-	$(CXX) -o $(TARGET) $(CFLAGS) $(OBJS)
+	$(CXX) -o $(TARGET) $(CFLAGS) $(OBJS) $(LINKER)
 
 $(ODIR):
 	mkdir $(ODIR)
